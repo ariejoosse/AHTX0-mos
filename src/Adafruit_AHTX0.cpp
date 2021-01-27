@@ -40,15 +40,36 @@
 /*!
  *    @brief  Instantiates a new AHTX0 class
  */
-Adafruit_AHTX0::Adafruit_AHTX0(void) {}
+static int8_t user_i2c_write(uint8_t dev_id, uint8_t reg_addr,
+                             uint8_t *reg_data, uint16_t len) {
+  /*
+   * The parameter dev_id can be used as a variable to store the I2C address of
+   * the device
+   */
 
-Adafruit_AHTX0::~Adafruit_AHTX0(void) {
-  if (temp_sensor) {
-    delete temp_sensor;
+  /*
+   * Data on the bus should be like
+   * |------------+---------------------|
+   * | I2C action | Data                |
+   * |------------+---------------------|
+   * | Start      | -                   |
+   * | Write      | (reg_addr)          |
+   * | Write      | (reg_data[0])       |
+   * | Write      | (....)              |
+   * | Write      | (reg_data[len - 1]) |
+   * | Stop       | -                   |
+   * |------------+---------------------|
+   */
+  // int8_t rslt = 0; /* Return 0 for Success, non-zero for failure */
+
+  struct mgos_i2c *i2c = mgos_i2c_get_global();
+  if (NULL == i2c) {
+    LOG(LL_INFO, ("Could not get i2c global instance"));
+    return -1;
   }
-  if (humidity_sensor) {
-    delete humidity_sensor;
-  }
+
+  bool ok = mgos_i2c_write_reg_n(i2c, dev_id, reg_addr, len, reg_data);
+  return ok ? 0 : -2;
 }
 
 

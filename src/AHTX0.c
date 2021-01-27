@@ -35,7 +35,7 @@
 
 /*#include "Arduino.h"*/
 
-#include "Adafruit_AHTX0.h"
+#include "AHTX0.h"
 
 /*!
  *    @brief  Instantiates a new AHTX0 class

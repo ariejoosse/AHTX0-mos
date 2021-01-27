@@ -9,22 +9,11 @@ includes:
 sources:
   - src
   
-config_schema:
-#I2C
-# - ["i2c.enable", true]
-#SPI
-# - ["spi.enable", true]
 
 libs:
   - origin: https://github.com/mongoose-os-libs/i2c
 
   
-cdefs:
-# Using 32 bit integer calculation by default
-# BME280_32BIT_ENABLE: 1
-# If 64 bit integer or double calculation is needed, 
-# set BME280_64BIT_ENABLE or
-# BME280_FLOAT_ENABLE in application's mos.yml
 
 tags:
   - c

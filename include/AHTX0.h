@@ -15,8 +15,6 @@
  *	BSD license (see license.txt)
  */
 
-#ifndef _ADAFRUIT_AHTX0_H
-#define _ADAFRUIT_AHTX0_H
 
 
 
@@ -28,4 +26,4 @@
 #define AHTX0_STATUS_CALIBRATED 0x08 ///< Status bit for calibrated
 
 
-#endif
+
